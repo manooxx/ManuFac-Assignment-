@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+
+import React, { useEffect, useState } from 'react';
+import { Container, Title } from '@mantine/core';
+import { fetchData, CropData } from './Components/dataFetcher';
+import { processYearlyData, processCropData, YearlyData, CropAggregateData } from './Components/dataProcessing';
+import YearlyDataTable from './Components/YearlyDataTable';
+import CropDataTable from './Components/CropDataTable';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
+  // State to store the fetched data
+  const [data, setData] = useState<CropData[]>([]);
+
+  // Fetch the data when the component mounts
+  useEffect(() => {
+    const loadData = async () => {
+      const fetchedData = await fetchData();
+      setData(fetchedData);
+    };
+    loadData();
+  }, []);
+
+  // Get the processed data
+  const yearlyData: YearlyData[] = processYearlyData(data);
+  const cropData: CropAggregateData[] = processCropData(data);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="App">
+      <Title order={1}>Agriculture Analytics</Title>
+      <YearlyDataTable yearlyData={yearlyData} />
+      <CropDataTable cropData={cropData} />
+    </Container>
   );
-}
+};
 
 export default App;
+
