@@ -28,6 +28,11 @@ Ensure you have the following installed on your system:
   To run the project locally, use:-
    yarn start
 
+## Full ScreenShot of both the tables:-
+   Table 1 - Ss of Yearly Data --- ![SS1](https://github.com/manooxx/ManuFac-Assignment-/assets/116809287/b5c0c0aa-0a39-422a-85fa-e545b76079ba)
+
+   Table 2 - Ss of Crop Data --- ![SS2](https://github.com/manooxx/ManuFac-Assignment-/assets/116809287/9bfdc79b-a5ec-4bf9-98c8-8de8419857e7)
+
 
    ## Thank you 
 
